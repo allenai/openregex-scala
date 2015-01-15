@@ -1,6 +1,6 @@
 ReleaseSettings.defaults
 
-organization := "edu.washington.cs.knowitall"
+organization := "org.allenai.openregex"
 
 name := "openregex-scala"
 
@@ -17,7 +17,7 @@ libraryDependencies ++= Seq("edu.washington.cs.knowitall" % "openregex" % "1.1.1
 
 licenses := Seq("LGPL" -> url("http://www.gnu.org/licenses/lgpl.html"))
 
-homepage := Some(url("http://github.com/knowitall/openregex-scala"))
+homepage := Some(url("http://github.com/allenai/openregex-scala"))
 
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
@@ -33,9 +33,9 @@ publishTo <<= version { (v: String) =>
 
 pomExtra := (
   <scm>
-    <url>https://github.com/knowitall/openregex-scala</url>
-    <connection>scm:git://github.com/knowitall/openregex-scala.git</connection>
-    <developerConnection>scm:git:git@github.com:knowitall/openregex-scala.git</developerConnection>
+    <url>https://github.com/allenai/openregex-scala</url>
+    <connection>scm:git://github.com/allenai/openregex-scala.git</connection>
+    <developerConnection>scm:git:git@github.com:allenai/openregex-scala.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
   <developers>

@@ -10,7 +10,7 @@ Scala collections as well as providing a more familiar API for Scala
 users.
 
 OpenRegex-scala also includes a [`PatternParser`
-implementation](https://github.com/knowitall/openregex-scala/blob/master/src/main/scala/edu/knowitall/openregex/example/PatternParsers.scala)
+implementation](https://github.com/allenai/openregex-scala/blob/master/src/main/scala/edu/knowitall/openregex/example/PatternParsers.scala)
 that uses reflection to run over any class out of the box.  Any public field or
 0-argument method may be used to match against a string.  There is an exact
 string matcher (single quotes) and a regular expression matcher (forward
