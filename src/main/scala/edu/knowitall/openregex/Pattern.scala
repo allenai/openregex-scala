@@ -2,7 +2,7 @@ package edu.knowitall.openregex
 
 import scala.collection.JavaConverters._
 import com.google.common.base.{ Function => GuavaFunction }
-import edu.knowitall.collection.immutable.Interval
+import scala.collection.immutable.Range
 import edu.washington.cs.knowitall.regex.Expression.BaseExpression
 import edu.washington.cs.knowitall.regex.RegularExpression
 import edu.washington.cs.knowitall.regex.RegularExpressionParser
@@ -66,7 +66,7 @@ object Pattern {
     new PatternParser(parser)
   }
 
-  case class Match[E](tokens: Seq[E], pairs: Seq[Group[E]], interval: Interval) {
+  case class Match[E](tokens: Seq[E], pairs: Seq[Group[E]], range: Range) {
     def text = tokens.mkString(" ")
 
     def groups = pairs.filter(p =>
@@ -82,16 +82,16 @@ object Pattern {
   }
   object Match {
     def fromJava[E](m: JavaMatch[E]) = {
-      Match(m.tokens.asScala, m.pairs.asScala.map(Group.fromJava(_)), Interval.open(m.startIndex, m.endIndex + 1))
+      Match(m.tokens.asScala, m.pairs.asScala.map(Group.fromJava(_)), Range(m.startIndex, m.endIndex + 1))
     }
   }
 
-  case class Group[E](expr: Expression[E], tokens: Seq[E], interval: Interval) {
+  case class Group[E](expr: Expression[E], tokens: Seq[E], interval: Range) {
     def text = tokens.mkString(" ")
   }
   object Group {
     def fromJava[E](group: JavaMatch.Group[E]) = {
-      Group(group.expr, group.tokens.asScala, Interval.open(group.startIndex, group.endIndex + 1))
+      Group(group.expr, group.tokens.asScala, Range(group.startIndex, group.endIndex + 1))
     }
   }
 }

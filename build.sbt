@@ -4,22 +4,16 @@ organization := "edu.washington.cs.knowitall"
 
 name := "openregex-scala"
 
-scalaVersion := "2.10.2"
+crossScalaVersions := Seq("2.11.5", "2.10.4")
 
-crossScalaVersions := Seq("2.10.2", "2.9.3")
-
-resolvers ++= Seq()
+scalaVersion <<= crossScalaVersions { (vs: Seq[String]) => vs.head }
 
 libraryDependencies ++= Seq("edu.washington.cs.knowitall" % "openregex" % "1.1.1",
     "com.google.code.findbugs" % "jsr305" % "2.0.1",
-    "edu.washington.cs.knowitall.common-scala" %% "common-scala" % "1.1.2",
     "junit" % "junit" % "4.11" % "test",
-    "org.scalacheck" %% "scalacheck" % "1.10.1" % "test",
-    "org.specs2" % "specs2" % "1.12.3" % "test" cross CrossVersion.binaryMapped {
-      case "2.9.3" => "2.9.2"
-      case "2.10.2" => "2.10"
-      case x => x
-    })
+    "org.specs2" %% "specs2-core" % "2.4.15" % "test",
+    "org.specs2" %% "specs2-scalacheck" % "2.4.15" % "test",
+    "org.specs2" %% "specs2-junit" % "2.4.15" % "test")
 
 licenses := Seq("LGPL" -> url("http://www.gnu.org/licenses/lgpl.html"))
 

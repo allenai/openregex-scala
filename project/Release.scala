@@ -7,7 +7,7 @@ import ReleaseKeys._
 import ReleaseStateTransformations._
 import Utilities._
 
-import com.typesafe.sbt.SbtPgp.PgpKeys._
+import com.typesafe.sbt.pgp.PgpKeys._
 
 object ReleaseSettings {
   val defaults = releaseSettings ++ Seq(

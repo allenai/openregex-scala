@@ -12,12 +12,12 @@ import edu.washington.cs.knowitall.logic.Expression.Arg
   */
 @RunWith(classOf[JUnitRunner])
 class LogicTest extends Specification {
-  "Some logic expression" should {
-    val logic = Logic.compile[Unit]("true & (true | !false)", (s: String) => s.toLowerCase match {
-      case "true" => (Unit) => true
-      case "false" => (Unit) => false
-    })
+  val logic = Logic.compile[Unit]("true & (true | !false)", (s: String) => s.toLowerCase match {
+    case "true" => (Unit) => true
+    case "false" => (Unit) => false
+  })
 
+  "Some logic expression" should {
     "be true" in {
       logic.apply() must beTrue
     }

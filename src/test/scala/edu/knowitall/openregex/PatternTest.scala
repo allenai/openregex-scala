@@ -17,32 +17,38 @@ class PatternTest extends Specification {
     (string: String) => string == matcher
   }
   "Basic regular expression tests" should {
-    val regex = Pattern.compile[String]("<hello>? <goodbye>* <.>", deserialize _)
+    "pass successfully" in {
+      val regex = Pattern.compile[String]("<hello>? <goodbye>* <.>", deserialize _)
 
-    regex.matches(List("hello", "goodbye", ".")) must beTrue
-    regex.matches(List("hello", "goodbye", "goodbye", ".")) must beTrue
-    regex.matches(List("hello", "goodbye", "goodbye")) must beFalse
+      regex.matches(List("hello", "goodbye", ".")) must beTrue
+      regex.matches(List("hello", "goodbye", "goodbye", ".")) must beTrue
+      regex.matches(List("hello", "goodbye", "goodbye")) must beFalse
+    }
   }
 
   "Matching group regular expression tests" should {
-    val regex = Pattern.compile[String]("(<hello>?) (<foo>:<goodbye>*) <.>", deserialize _)
+    "pass successfully" in {
+      val regex = Pattern.compile[String]("(<hello>?) (<foo>:<goodbye>*) <.>", deserialize _)
 
-    val m = regex.find(List("hello", "goodbye", "goodbye", ".")).get
-    m.groups(0).text == "hello"
-    m.groups(1).text == "goodbye goodbye"
-    m.group("foo").get.text == "goodbye goodbye"
+      val m = regex.find(List("hello", "goodbye", "goodbye", ".")).get
+      m.groups(0).text == "hello"
+      m.groups(1).text == "goodbye goodbye"
+      m.group("foo").get.text == "goodbye goodbye"
+    }
   }
 
   "Pattern extractor works" should {
-    val regex = Pattern.compile[String]("(<hello>) <no> <way> (<goodbye>)", deserialize _)
+    "pass successfully" in {
+      val regex = Pattern.compile[String]("(<hello>) <no> <way> (<goodbye>)", deserialize _)
 
-    val list = List("hello", "no", "way", "goodbye")
+      val list = List("hello", "no", "way", "goodbye")
 
-    val result = list match {
-      case regex(greeting, farewell) => greeting == "hello" && farewell == "goodbye"
-      case _ => false
+      val result = list match {
+        case regex(greeting, farewell) => greeting == "hello" && farewell == "goodbye"
+        case _ => false
+      }
+
+      result must beTrue
     }
-
-    result must beTrue
   }
 }
